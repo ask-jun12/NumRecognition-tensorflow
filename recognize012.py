@@ -66,16 +66,7 @@ test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
 print('\nTest accuracy:', test_acc)
 print('\nTest loss:', test_loss)
 predictions = model.predict(test_images)
-# print(np.argmax(predictions[0]))
-# print(test_labels[0])
 
-# 予測値の表示
-# print('------------------------------------------------')
-# print('predictions : ')
-# for i in range(40):
-#     print('{} : {}' .format(class_names[test_labels[i]], predictions[i]))
-
-# 評価指標
 evaluation = np.zeros((3,3), np.uint8) # 混同行列
 for i in range(40):
     predicted_label = np.argmax(predictions[i])
@@ -131,23 +122,7 @@ print('2の再現率 : {} %' .format(round(recall2, 2)))
 recall = (recall0 + recall1 + recall2)/3 # 平均再現率
 print('平均再現率 : {} %' .format(round(recall, 2)))
 
-# テスト用データの画像10枚のうち9枚の比較
-# plt.figure(figsize=(7,7))
-# for i in range(40):
-#     plt.subplot(5,8,i+1)
-#     plt.xticks([])
-#     plt.yticks([])
-#     plt.grid(False)
-#     plt.imshow(test_images[i], cmap=plt.cm.binary)
-#     predicted_label = np.argmax(predictions[i])
-#     plt.xlabel("{} ({})" .format(class_names[test_labels[i]], class_names[predicted_label]))
-# plt.show()
-
 # 損失率と正答率を図示
 plt.plot(range(1,31), result.history['loss'], label="training")
 plt.plot(range(1,31), result.history['accuracy'], label="training")
 plt.show()
-# plt.plot(range(1,21), result.history['accuracy'], label="training", color='orange')
-# plt.show()
-# plt.plot(range(1,21), result.history['loss'], label="training")
-# plt.show()
